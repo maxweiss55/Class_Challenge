@@ -1,0 +1,230 @@
+---
+title: "Weiss_Submission"
+author: "Max Weiss"
+date: "10/12/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(tidyverse)
+library(dplyr)
+
+```
+
+
+
+```{r}
+
+
+az02 <- read_csv("elections-poll-az02-1 (2).csv") %>%
+  mutate(county = "az02") %>%
+  select(final_weight, ager, county)
+ca25 <- read_csv("elections-poll-ca25-1 (2).csv") %>%
+  mutate(county = "ca25") %>%
+  select(final_weight, ager, county)
+ca45 <- read_csv("elections-poll-ca45-1 (1).csv") %>%
+  mutate(county = "ca45") %>%
+  select(final_weight, ager, county)
+ca48 <- read_csv("elections-poll-ca48-1 (1).csv") %>%
+  mutate(county = "ca48") %>%
+  select(final_weight, ager, county)
+ca49 <- read_csv("elections-poll-ca49-1 (2).csv") %>%
+  mutate(county = "ca49") %>%
+  select(final_weight, ager, county)
+co06 <- read_csv("elections-poll-co06-1.csv") %>%
+  mutate(county = "co06") %>%
+  select(final_weight, ager, county)
+fl26 <- read_csv("elections-poll-fl26-1.csv") %>%
+  mutate(county = "fl26") %>%
+  select(final_weight, ager, county)
+ia01 <- read_csv("elections-poll-ia01-1.csv") %>%
+  mutate(county = "ia01") %>%
+  select(final_weight, ager, county)
+ia03 <- read_csv("elections-poll-ia03-1.csv") %>%
+  mutate(county = "ia03") %>%
+  select(final_weight, ager, county)
+il06 <- read_csv("elections-poll-il06-1.csv") %>%
+  mutate(county = "il06") %>%
+  select(final_weight, ager, county)
+il12 <- read_csv("elections-poll-il12-1.csv") %>%
+  mutate(county = "il12") %>%
+  select(final_weight, ager, county)
+il14 <- read_csv("elections-poll-il14-1.csv") %>%
+  mutate(county = "il14") %>%
+  select(final_weight, ager, county)
+ks02 <- read_csv("elections-poll-ks02-1.csv") %>%
+  mutate(county = "ks02") %>%
+  select(final_weight, ager, county)
+ks03 <- read_csv("elections-poll-ks03-1.csv") %>%
+  mutate(county = "ks03") %>%
+  select(final_weight, ager, county)
+ky06 <- read_csv("elections-poll-ky06-1.csv") %>%
+  mutate(county = "ky06") %>%
+  select(final_weight, ager, county)
+me02 <- read_csv("elections-poll-me02-1.csv") %>%
+  mutate(county = "me02") %>%
+  select(final_weight, ager, county)
+mi08 <- read_csv("elections-poll-mi08-1.csv") %>%
+  mutate(county = "mi08") %>%
+  select(final_weight, ager, county)
+mi11 <- read_csv("elections-poll-mi11-1.csv") %>%
+  mutate(county = "mi11") %>%
+  select(final_weight, ager, county)
+mn02 <- read_csv("elections-poll-mn02-1.csv") %>%
+  mutate(county = "mn02") %>%
+  select(final_weight, ager, county)
+mn03 <- read_csv("elections-poll-mn03-1.csv") %>%
+  mutate(county = "mn03") %>%
+  select(final_weight, ager, county)
+mn08 <- read_csv("elections-poll-mn08-1.csv") %>%
+  mutate(county = "mn08") %>%
+  select(final_weight, ager, county)
+nc09 <- read_csv("elections-poll-nc09-1.csv") %>%
+  mutate(county = "nc09") %>%
+  select(final_weight, ager, county)
+nc13 <- read_csv("elections-poll-nc13-1.csv") %>%
+  mutate(county = "nc13") %>%
+  select(final_weight, ager, county)
+ne02 <- read_csv("elections-poll-ne02-1.csv") %>%
+  mutate(county = "ne02") %>%
+  select(final_weight, ager, county)
+nj03 <- read_csv("elections-poll-nj03-1.csv") %>%
+  mutate(county = "nj03") %>%
+  select(final_weight, ager, county)
+nj07 <- read_csv("elections-poll-nj07-1.csv") %>%
+  mutate(county = "nj07") %>%
+  select(final_weight, ager, county)
+nc09 <- read_csv("elections-poll-nc09-1.csv") %>%
+  mutate(county = "nc09") %>%
+  select(final_weight, ager, county)
+nm02 <- read_csv("elections-poll-nm02-1.csv") %>%
+  mutate(county = "nm02") %>%
+  select(final_weight, ager, county)
+nc09 <- read_csv("elections-poll-nc09-1.csv") %>%
+  mutate(county = "nc09") %>%
+  select(final_weight, ager, county)
+nvsen <- read_csv("elections-poll-nvsen-2.csv") %>%
+  mutate(county = "nvsen") %>%
+  select(final_weight, ager, county)
+ny01 <- read_csv("elections-poll-ny01-1.csv") %>%
+  mutate(county = "ny01") %>%
+  select(final_weight, ager, county)
+oh01 <- read_csv("elections-poll-oh01-1 (1).csv") %>%
+  mutate(county = "oh01") %>%
+  select(final_weight, ager, county)
+pa07 <- read_csv("elections-poll-pa07-1.csv") %>%
+  mutate(county = "pa07") %>%
+  select(final_weight, ager, county)
+pa16 <- read_csv("elections-poll-pa16-1.csv") %>%
+  mutate(county = "pa16") %>%
+  select(final_weight, ager, county)
+tnsen <- read_csv("elections-poll-tnsen-2.csv") %>%
+  mutate(county = "tnsen") %>%
+  select(final_weight, ager, county)
+tx07 <- read_csv("elections-poll-tx07-1.csv") %>%
+  mutate(county = "tx07") %>%
+  select(final_weight, ager, county)
+tx23 <- read_csv("elections-poll-tx23-1.csv") %>%
+  mutate(county = "tx23") %>%
+  select(final_weight, ager, county)
+tx31 <- read_csv("elections-poll-tx31-1.csv") %>%
+  mutate(county = "tx31") %>%
+  select(final_weight, ager, county)
+tx32 <- read_csv("elections-poll-tx32-1.csv") %>%
+  mutate(county = "tx32") %>%
+  select(final_weight, ager, county)
+txsen <- read_csv("elections-poll-txsen-2.csv") %>%
+  mutate(county = "txsen") %>%
+  select(final_weight, ager, county)
+va02 <- read_csv("elections-poll-va02-1.csv") %>%
+  mutate(county = "va02") %>%
+  select(final_weight, ager, county)
+va07 <- read_csv("elections-poll-va07-1.csv") %>%
+  mutate(county = "va07") %>%
+  select(final_weight, ager, county)
+wa08 <- read_csv("elections-poll-wa08-1.csv") %>%
+  mutate(county = "wa03") %>%
+  select(final_weight, ager, county)
+wi01 <- read_csv("elections-poll-wi01-1.csv") %>%
+  mutate(county = "wi01") %>%
+  select(final_weight, ager, county)
+wv03 <- read_csv("elections-poll-wv03-1.csv") %>%
+  mutate(county = "wv03") %>%
+  select(final_weight, ager, county)
+
+
+new1 <- rbind(az02, ca25, ca45, ca48, ca49, co06)
+new2 <- rbind(fl26, ia01, ia03, il06, il12, il14)
+new3 <- rbind(ks02, ks03, ky06, me02, mi08, mi11)
+new4 <- rbind(mn02, mn03, mn08, nc09, nc13, ne02)
+new5 <- rbind(nj03, nj07, nm02, nvsen, ny01, oh01)
+new6 <- rbind(pa07, tnsen, tx07, tx23, tx31, tx32)
+new7 <- rbind(txsen, va02, va07, wa08, wi01, wv03)
+
+new1_polls_plot <- new1 %>%
+  mutate(ager = fct_collapse(ager, "35 and Older" = c("35 to 49", "50 to 64", "65 and older"))) %>%
+  filter(ager == "18 to 34" | ager == "35 and Older") %>%
+  ggplot(aes(x = ager, y = final_weight)) +
+  geom_boxplot() +
+  facet_wrap(~ county, nrow = 2, ncol = 3)
+
+new2_polls_plot <- new2 %>%
+  filter(ager != "[DO NOT READ] Refused") %>%
+  mutate(ager = fct_collapse(ager, 
+                                  "35 and Older" = c("35 to 49", "50 to 64", "65 and older"))) %>%
+  ggplot(aes(x = ager, y = final_weight)) +
+  geom_boxplot() +
+  facet_wrap(~ county, nrow = 2, ncol = 3)
+
+new3_polls_plot <- new3 %>%
+  filter(ager != "[DO NOT READ] Refused") %>%
+  mutate(ager = fct_collapse(ager, 
+                                  "35 and Older" = c("35 to 49", "50 to 64", "65 and older"))) %>%
+  ggplot(aes(x = ager, y = final_weight)) +
+  geom_boxplot() +
+  facet_wrap(~ county, nrow = 2, ncol = 3)
+
+new4_polls_plot <- new4 %>%
+  filter(ager != "[DO NOT READ] Refused") %>%
+  mutate(ager = fct_collapse(ager, 
+                                  "35 and Older" = c("35 to 49", "50 to 64", "65 and older"))) %>%
+  ggplot(aes(x = ager, y = final_weight)) +
+  geom_boxplot() +
+  facet_wrap(~ county, nrow = 2, ncol = 3)
+
+new5_polls_plot <- new5 %>%
+  filter(ager != "[DO NOT READ] Refused") %>%
+  mutate(ager = fct_collapse(ager, 
+                                  "35 and Older" = c("35 to 49", "50 to 64", "65 and older"))) %>%
+  ggplot(aes(x = ager, y = final_weight)) +
+  geom_boxplot() +
+  facet_wrap(~ county, nrow = 2, ncol = 3)
+
+new6_polls_plot <- new6 %>%
+  filter(ager != "[DO NOT READ] Refused") %>%
+  mutate(ager = fct_collapse(ager, 
+                                  "35 and Older" = c("35 to 49", "50 to 64", "65 and older"))) %>%
+  ggplot(aes(x = ager, y = final_weight)) +
+  geom_boxplot() +
+  facet_wrap(~ county, nrow = 2, ncol = 3)
+
+new7_polls_plot <- new7 %>%
+  filter(ager != "[DO NOT READ] Refused") %>%
+  mutate(ager = fct_collapse(ager, 
+                                  "35 and Older" = c("35 to 49", "50 to 64", "65 and older"))) %>%
+  ggplot(aes(x = ager, y = final_weight)) +
+  geom_boxplot() +
+  facet_wrap(~ county, nrow = 2, ncol = 3)
+
+new1_polls_plot
+new2_polls_plot
+new3_polls_plot
+new4_polls_plot
+new5_polls_plot
+new6_polls_plot
+new7_polls_plot
+
+
+```
