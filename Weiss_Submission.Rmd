@@ -11,12 +11,6 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(dplyr)
 
-```
-
-
-
-```{r}
-
 
 az02 <- read_csv("elections-poll-az02-1 (2).csv") %>%
   mutate(county = "az02") %>%
@@ -163,58 +157,69 @@ new5 <- rbind(nj03, nj07, nm02, nvsen, ny01, oh01)
 new6 <- rbind(pa07, tnsen, tx07, tx23, tx31, tx32)
 new7 <- rbind(txsen, va02, va07, wa08, wi01, wv03)
 
+```
+
+
+
+```{r}
+
 new1_polls_plot <- new1 %>%
   mutate(ager = fct_collapse(ager, "35 and Older" = c("35 to 49", "50 to 64", "65 and older"))) %>%
   filter(ager == "18 to 34" | ager == "35 and Older") %>%
-  ggplot(aes(x = ager, y = final_weight)) +
+  ggplot(aes(x = ager, y = final_weight, fill = ager)) +
   geom_boxplot() +
+  labs(title = "New York Times Midterm Polling By County",
+       subtitle = "Final Survey Weighting of Young People Compared to Rest of the Population",
+       x = "Age Group", y = "Final Weight") +
+  theme(plot.title = element_text(hjust = 0.5),
+          plot.subtitle = element_text(hjust = 0.5)) +
   facet_wrap(~ county, nrow = 2, ncol = 3)
 
 new2_polls_plot <- new2 %>%
   filter(ager != "[DO NOT READ] Refused") %>%
-  mutate(ager = fct_collapse(ager, 
-                                  "35 and Older" = c("35 to 49", "50 to 64", "65 and older"))) %>%
-  ggplot(aes(x = ager, y = final_weight)) +
+  mutate(ager = fct_collapse(ager, "35 and Older" = c("35 to 49", "50 to 64", "65 and older"))) %>%
+  ggplot(aes(x = ager, y = final_weight, fill = ager)) +
+  labs(x = "Age Group", y = "Final Weight") +
   geom_boxplot() +
   facet_wrap(~ county, nrow = 2, ncol = 3)
 
 new3_polls_plot <- new3 %>%
   filter(ager != "[DO NOT READ] Refused") %>%
-  mutate(ager = fct_collapse(ager, 
-                                  "35 and Older" = c("35 to 49", "50 to 64", "65 and older"))) %>%
-  ggplot(aes(x = ager, y = final_weight)) +
+  mutate(ager = fct_collapse(ager, "35 and Older" = c("35 to 49", "50 to 64", "65 and older"))) %>%
+  ggplot(aes(x = ager, y = final_weight, fill = ager)) +
   geom_boxplot() +
+  labs(x = "Age Group", y = "Final Weight") +
   facet_wrap(~ county, nrow = 2, ncol = 3)
 
 new4_polls_plot <- new4 %>%
   filter(ager != "[DO NOT READ] Refused") %>%
-  mutate(ager = fct_collapse(ager, 
-                                  "35 and Older" = c("35 to 49", "50 to 64", "65 and older"))) %>%
-  ggplot(aes(x = ager, y = final_weight)) +
+  mutate(ager = fct_collapse(ager, "35 and Older" = c("35 to 49", "50 to 64", "65 and older"))) %>%
+  ggplot(aes(x = ager, y = final_weight, fill = ager)) +
   geom_boxplot() +
+  labs(x = "Age Group", y = "Final Weight") +
   facet_wrap(~ county, nrow = 2, ncol = 3)
 
 new5_polls_plot <- new5 %>%
   filter(ager != "[DO NOT READ] Refused") %>%
-  mutate(ager = fct_collapse(ager, 
-                                  "35 and Older" = c("35 to 49", "50 to 64", "65 and older"))) %>%
-  ggplot(aes(x = ager, y = final_weight)) +
+  mutate(ager = fct_collapse(ager, "35 and Older" = c("35 to 49", "50 to 64", "65 and older"))) %>%
+  ggplot(aes(x = ager, y = final_weight, fill = ager)) +
   geom_boxplot() +
+  labs(x = "Age Group", y = "Final Weight") +
   facet_wrap(~ county, nrow = 2, ncol = 3)
 
 new6_polls_plot <- new6 %>%
   filter(ager != "[DO NOT READ] Refused") %>%
-  mutate(ager = fct_collapse(ager, 
-                                  "35 and Older" = c("35 to 49", "50 to 64", "65 and older"))) %>%
-  ggplot(aes(x = ager, y = final_weight)) +
+  mutate(ager = fct_collapse(ager, "35 and Older" = c("35 to 49", "50 to 64", "65 and older"))) %>%
+  ggplot(aes(x = ager, y = final_weight, fill = ager)) +
   geom_boxplot() +
+  labs(x = "Age Group", y = "Final Weight") +
   facet_wrap(~ county, nrow = 2, ncol = 3)
 
 new7_polls_plot <- new7 %>%
   filter(ager != "[DO NOT READ] Refused") %>%
-  mutate(ager = fct_collapse(ager, 
-                                  "35 and Older" = c("35 to 49", "50 to 64", "65 and older"))) %>%
-  ggplot(aes(x = ager, y = final_weight)) +
+  mutate(ager = fct_collapse(ager, "35 and Older" = c("35 to 49", "50 to 64", "65 and older"))) %>%
+  ggplot(aes(x = ager, y = final_weight, fill = ager)) +
+  labs(x = "Age Group", y = "Final Weight") +
   geom_boxplot() +
   facet_wrap(~ county, nrow = 2, ncol = 3)
 
@@ -226,5 +231,19 @@ new5_polls_plot
 new6_polls_plot
 new7_polls_plot
 
+overall <- rbind(new1, new2, new3, new4, new5, new6, new7)
+
+overall_plot <- overall %>%
+  filter(ager != "[DO NOT READ] Refused" & ager != "[DO NOT READ] Don't know/Refused") %>%
+  mutate(ager = fct_collapse(ager, "35 and Older" = c("35 to 49", "50 to 64", "65 and older"))) %>%
+  ggplot(aes(x = ager, y = final_weight, fill = ager)) +
+  labs(title = "New York Times Midterm Polling Aggregate",
+       subtitle = "Final Survey Weighting of Young People Compared to Rest of the Population",
+       x = "Age Group", y = "Final Weight") +
+  theme(plot.title = element_text(hjust = 0.5),
+          plot.subtitle = element_text(hjust = 0.5)) +
+  geom_boxplot()
+
+overall_plot
 
 ```
